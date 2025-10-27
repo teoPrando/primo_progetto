@@ -12,3 +12,14 @@ def lista(request):
 
 def chi_siamo(request):
     return render(request,  "chi_siamo.html")
+
+def index(request):
+    return render(request,  "index.html")
+
+def variabili(request):
+    context={
+        'var1': 'Prima variabile',
+        'var2': 'Seconda variabile',
+        'var3': 'Terza variabile',
+    }
+    return render (request,"variabili.html",context)
