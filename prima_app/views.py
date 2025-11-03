@@ -14,7 +14,7 @@ def chi_siamo(request):
     return render(request,  "chi_siamo.html")
 
 def index(request):
-    return render(request,  "index.html")
+    return render(request,  "prima_app/index.html")
 
 def variabili(request):
     context={

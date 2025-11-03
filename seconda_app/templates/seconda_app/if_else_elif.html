@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IF else elif</title>
+</head>
+<body>
+    <b>var1= {{var1}}</b><br>
+    <b>var2= {{var2}}</b><br>
+    <b>var3= {{var3}}</b><br>
+
+    {% if var1 < var2 %}
+        <p>var1 è minore di var2</p>
+    {% elif var1 > var2 %}
+        <p>var1 è maggiore di var2</p>
+    {% else %}
+        <p>var1 è uguale a var2</p>
+    {% endif %}
+
+    {% if var1 > var2 %}
+        <p>var1 è maggiore di var2</p>
+    {% elif var1 < var2 %}
+        <p>var1 è minore di var2</p>
+    {% else %}
+        <p>var1 è uguale a var2</p>
+    {% endif %}
+
+    {% if var1 <= var2 %}
+        <p>var1 è minore uguale di var2</p>
+    {% elif var1 >= var2 %}
+        <p>var1 è maggiore uguale di var2</p>
+    {% endif %}
+
+    {% if var1 >= var2 %}
+        <p>var1 è maggiore uguale di var2</p>
+    {% elif var1 <= var2 %}
+        <p>var1 è minore uguale di var2</p>
+    {% endif %}
+
+    {% if var1 == var2 %}
+        <p>var1 è uguale a var2</p>
+    {% elif var1 != var2 %}
+        <p>var1 NON è uguale a var2</p>
+    {% endif %}
+
+    {% if var1 < var2 and var1 < var3 %}
+        <p>var1 è minore di var2 and var1 è minore di var3</p>
+    {% elif var1 > var2 and var1 > var3%}
+        <p>var1 è maggiore di var2 and var1 è maggiore di var3</p>
+    {% endif %}
+
+    {% if not var1 > var2 %}
+        <p>var1 NON è maggiore di var2</p>
+    {% elif not var1 < var2%}
+        <p>var1 NON è minore di var2</p>
+    {% else %}
+        <p>var1 è uguale a var2</p>   
+    {% endif %}
+</body>
+</html>
