@@ -1,15 +1,11 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index Root</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{%block title%} {{block.super}} | Chi siamo {%endblock title%}
+    
+{%block content%}
     <ol>
         <li><a href="/admin">Pannello admin</a></li> <!-- per creare il collegamento al pannello di admin-->
         <li><a href="{% url 'prima_app:index'%}">Index prima app</a></li>
         <li><a href="{% url 'seconda_app:index'%}">Index seconda app</a></li>
     </ol>
-</body>
-</html>
+{%endblock content%}
+    

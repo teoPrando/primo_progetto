@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FOR</title>
-</head>
-<body>
-    <p>Cicla una sequenza usando <b>forloop counter</b></p>
+{% extends 'base.html' %}
+{%block title%} {{block.super}} | For {%endblock title%}
+    
+{%block content%}
+   <p>Cicla una sequenza usando <b>forloop counter</b></p>
     {% for x in list2 %}
         <p><i>{{ forloop.counter}}</i>: {{x}}</p> <!--foloop.counter ritorna il numero dell'iterazione (partendo da 1)-->
     {%endfor%}
@@ -46,6 +42,5 @@
     {% for x in list2 reversed %}
         <p>-Elemento: {{x}}</p> 
     {%endfor%}
-
-</body>
-</html>
+{%endblock content%}
+    

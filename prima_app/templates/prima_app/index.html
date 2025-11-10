@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{%block title%} {{block.super}} | Index_prima_app {%endblock title%}
+    
+{%block content%}
     <ol>
         <li><a href="{% url 'index_root'%}">Index root</a></li>
         <li><a href="{% url 'prima_app:homepage'%}">Home page di benvenuto</a></li>
@@ -14,5 +10,5 @@
         <li><a href="{% url 'prima_app:chi_siamo'%}">Chi siamo</a></li>
         <li><a href="{% url 'prima_app:variabili'%}">Variabili</a></li>
     </ol>
-</body>
-</html>
+{%endblock content%}
+    
