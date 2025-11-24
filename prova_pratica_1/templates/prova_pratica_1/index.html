@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{%block title%} {{block.super}} | Index_prova_pratica_1 {%endblock title%}
+    
+{%block content%}
+    <ol>
+        <li><a href="{% url 'index_root'%}">Index root</a></li>
+        <li><a href="{% url 'prova_pratica_1:differenza'%}">Differenza</a></li>
+        <li><a href="{% url 'prova_pratica_1:pari_dispari'%}">Pari Dispari</a></li>
+    </ol>
+{%endblock content%}
+    

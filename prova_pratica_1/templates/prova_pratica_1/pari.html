@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{%block title%} {{block.super}} | Pari Dispari {%endblock title%}
+    
+{%block content%}
+    <ul>
+        {% for n in lista %}
+
+            {% if n|divisibleby:2 %}
+                <li><p style="color:green;">{{n}}</p></li>
+            {% else %}
+                <li><p style="color:red;">{{n}}</p></li>
+            {% endif %}
+
+        {%endfor%}
+     </ul>
+     <p>Numeri pari totali: {{n_pari}}</p>
+     <p>Numeri pari totali: {{n_dispari}}</p>
+{%endblock content%}
