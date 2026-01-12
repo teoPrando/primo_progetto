@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{%block title%}
+    Articoli e Giornalisti
+{%endblock title%}
+
+{%block content%}
+    <!--Scrittura di tutti gli articoli-->
+    <h4>Articoli:</h4>
+    {%for articolo in articoli%} <!--articoli è l'array che viene riempito con gli oggetti letti nella funzione home-->
+        <p><strong>Titolo: </strong>{{ articolo.titolo }}</p>
+        <p><strong>Contenuto: </strong>{{ articolo.contenuto }}</p>
+        <p><strong>Autore: </strong>{{ articolo.giornalista}}</p>
+    {%endfor%}
+    
+    <hr>
+    
+    <!--Scrittura di tutti i giornalisti-->
+    <h4>Giornalisti:</h4>
+    {%for giornalista in giornalisti%} <!--giornalisti è l'array che viene riempito con gli oggetti letti nella funzione home-->
+        <p><strong>Nome: </strong>{{ giornalista.nome }}</p>
+        <p><strong>Cognome: </strong>{{ giornalista.cognome }}</p>
+    {%endfor%}
+{%endblock content%}
