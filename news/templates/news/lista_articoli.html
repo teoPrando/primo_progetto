@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{%block title%}
+    Lista_articoli 
+{%endblock title%}
+
+{%block content%}
+    <h3>{{intestazione}}</h3>
+    {%for articolo in articoli%} <!--Itera per tutti gli oggetti della lista -->
+        <h1><strong>Articolo: </strong> {{articolo.titolo}}</h1> <!--articolo è l'oggetto ritornato dalla funzione articoloDetailView, quindi quello con la pk dell'url-->
+        <h3><strong>Contenuto: </strong> {{articolo.contenuto}}</h3>
+        <h5><strong>Autore: </strong> {{articolo.giornalista}}</h3>
+        <hr>
+    {%endfor %}
+{%endblock content%}

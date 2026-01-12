@@ -42,3 +42,16 @@ def articoloDetailView(request,pk): #il paramtero pk sta per la primary key che 
     context={"articolo":articolo}
     return render(request,"articolo_detail.html",context)
 
+#ritorna articoli di un giornalista, se non specificato mostra tutti gli articoli
+def lista_articoli(request,pk=None):  #pk=None: se non viene passato pk mostra tutti gli articoli
+    if(pk==None):
+        intestazione="Tutti gli articoli:"
+        articoli=Articolo.objects.all() #articoli diventa una lista di tutti gli Articoli
+    else:
+        intestazione="Articoli di un giornalista:"
+        articoli = Articolo.objects.filter(giornalista=pk) #filter ritorna una lista di oggetti articolo (differente da get_object sopra)
+    context={
+        'intestazione': intestazione,
+        'articoli': articoli,
+    }
+    return render(request,'lista_articoli.html',context)
