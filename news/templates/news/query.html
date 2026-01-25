@@ -1,0 +1,226 @@
+{% extends 'base.html' %}
+{%block title%}
+    Query
+{%endblock title%}
+
+{%block content%}
+    <h1>Query</h1>
+    <!--Query 1-->
+    <h3>Tutti gli articoli scritti da un giornalista di cognome "Rossi"</h3>
+    {% if articoli_cognome %} <!--se la lista NON è vuota-->
+        {% for articolo in articoli_cognome %}
+            <p><strong>Titolo: </strong>{{ articolo.titolo }}</p>
+            <p><strong>Contenuto: </strong>{{ articolo.contenuto }}</p>
+            <p><strong>Autore: </strong>{{ articolo.giornalista}}</p>
+            <p><strong>Visualizzazioni: </strong>{{ articolo.visualizzazioni}}</p>
+            <p><strong>Data: </strong>{{ articolo.data}}</p>
+            <hr>
+        {% endfor %}
+    {% else %} <!--se la lista è vuota-->
+        <p>Nessun articolo presente </p>
+    {% endif %}
+
+    <hr>
+
+    <!--Query 2-->
+    <h3>Numero totale di articoli: {{numero_totale_articoli}}</h3>
+    
+    <hr>
+
+    <!--Query 3-->
+    <h3>Numero di articoli giornalista (id=1): {{numero_articoli_giornalista_1}}</h3>
+
+    <hr>
+
+    <!--Query 4-->
+    <h3>Tutti gli articoli in ordine decrescente di visualizzazioni</h3>
+    {% if articoli_ordinati %} <!--se la lista NON è vuota-->
+        {% for articolo in articoli_ordinati %}
+            <p><strong>Visualizzazioni: </strong>{{ articolo.visualizzazioni}}</p>
+            <p><strong>Titolo: </strong>{{ articolo.titolo }}</p>
+            <p><strong>Contenuto: </strong>{{ articolo.contenuto }}</p>
+            <p><strong>Autore: </strong>{{ articolo.giornalista}}</p>
+            <p><strong>Data: </strong>{{ articolo.data}}</p>
+            <hr>
+        {% endfor %}
+    {% else %} <!--se la lista è vuota-->
+        <p>Nessun articolo presente </p>
+    {% endif %}
+
+    <hr>
+
+    <!--Query 5-->
+    <h3>Articoli senza visualizzazioni</h3>
+    {% if articoli_senza_visualizzazioni %} <!--se la lista NON è vuota-->
+        {% for articolo in articoli_senza_visualizzazioni %}
+            <p><strong>Visualizzazioni: </strong>{{ articolo.visualizzazioni}}</p>
+            <p><strong>Titolo: </strong>{{ articolo.titolo }}</p>
+            <p><strong>Contenuto: </strong>{{ articolo.contenuto }}</p>
+            <p><strong>Autore: </strong>{{ articolo.giornalista}}</p>
+            <p><strong>Data: </strong>{{ articolo.data}}</p>
+            <hr>
+        {% endfor %}
+    {% else %} <!--se la lista è vuota-->
+        <p>Nessun articolo</p>
+    {% endif %}
+
+    <hr>
+
+    <!--Query 6-->
+    <h3>Articolo più visualizzato</h3>
+    {% if articolo_piu_visualizzato %} <!--Se c'è almeno un articolo nel db-->
+        <p><strong>Visualizzazioni: </strong>{{ articolo_piu_visualizzato.visualizzazioni}}</p>
+        <p><strong>Titolo: </strong>{{ articolo_piu_visualizzato.titolo }}</p>
+        <p><strong>Contenuto: </strong>{{ articolo_piu_visualizzato.contenuto }}</p>
+        <p><strong>Autore: </strong>{{ articolo_piu_visualizzato.giornalista}}</p>
+        <p><strong>Data: </strong>{{ articolo.data}}</p>
+    {% else %}
+        <p>Nessun articolo presente</p>
+    {% endif %}
+
+    <hr>
+
+    <!--Query 7-->
+    <h3>Giornalisti nati dopo il 1° gennaio 1990</h3>
+    {% if giornalisti_data %} <!--se la lista NON è vuota-->
+        {%for giornalista in giornalisti_data%} <!--giornalisti è l'array che viene riempito con gli oggetti letti nella funzione home-->
+            <p><strong>Nome: </strong>{{ giornalista.nome }}</p>
+            <p><strong>Cognome: </strong>{{ giornalista.cognome }}</p>
+            <p><strong>Data di nascita: </strong>{{ giornalista.anno_di_nascita }}</p>
+            <hr>
+        {%endfor%}
+    {% else %}
+        <p>Nessun giornalista</p>
+    {% endif %}
+
+    <hr>
+
+    <!--Query 8-->
+    <h3>Articoli pubblicati il 1° gennaio 2023</h3>
+    {% if articoli_del_giorno %} <!--se la lista NON è vuota-->
+        {% for articolo in articoli_del_giorno %}
+            <p><strong>Data: </strong>{{ articolo.data}}</p>
+            <p><strong>Visualizzazioni: </strong>{{ articolo.visualizzazioni}}</p>
+            <p><strong>Titolo: </strong>{{ articolo.titolo }}</p>
+            <p><strong>Contenuto: </strong>{{ articolo.contenuto }}</p>
+            <p><strong>Autore: </strong>{{ articolo.giornalista}}</p>
+            <hr>
+        {% endfor %}
+    {% else %}
+        <p>Nessun articolo in questo giorno</p>
+    {% endif %}
+
+    <hr>
+
+    <!--Query 9-->
+    <h3>Articoli pubblicati nel 2023</h3>
+    {% if articoli_periodo %} <!--se la lista NON è vuota-->
+        {% for articolo in articoli_periodo %}
+            <p><strong>Data: </strong>{{ articolo.data}}</p>
+            <p><strong>Visualizzazioni: </strong>{{ articolo.visualizzazioni}}</p>
+            <p><strong>Titolo: </strong>{{ articolo.titolo }}</p>
+            <p><strong>Contenuto: </strong>{{ articolo.contenuto }}</p>
+            <p><strong>Autore: </strong>{{ articolo.giornalista}}</p>
+            <hr>
+        {% endfor %}
+    {% else %}
+        <p>Nessun articolo in questo periodo</p>
+    {% endif %}
+
+    <hr>
+
+    <!--Query 10-->
+    <h3>Articoli pubblicati da giornalisti nati prima del 1980</h3>
+    {% if articoli_giornalisti_nati %} <!--se la lista NON è vuota-->
+        {% for articolo in articoli_giornalisti_nati %}
+            <p><strong>Data: </strong>{{ articolo.data}}</p>
+            <p><strong>Visualizzazioni: </strong>{{ articolo.visualizzazioni}}</p>
+            <p><strong>Titolo: </strong>{{ articolo.titolo }}</p>
+            <p><strong>Contenuto: </strong>{{ articolo.contenuto }}</p>
+            <p><strong>Autore: </strong>{{ articolo.giornalista}}</p>
+            <hr>
+        {% endfor %}
+    {% else %}
+        <p>Nessun articolo</p>
+    {% endif %}
+
+    <hr>
+ 
+    <!--Query 11-->
+    <h3>Giornalista più giovane</h3>
+    {% if giornalista_giovane%} <!--se l'oggetto' NON è None-->
+        <p><strong>Nome: </strong>{{ giornalista_giovane.nome }}</p>
+        <p><strong>Cognome: </strong>{{ giornalista_giovane.cognome }}</p>
+        <p><strong>Data di nascita: </strong>{{ giornalista_giovane.anno_di_nascita }}</p>
+    {% else %}
+        <p>Nessun giornalista presente</p>
+    {% endif %}
+
+    <hr>
+
+    <!--Query 12-->
+    <h3>Giornalista più anziano</h3>
+    {% if giornalista_anziano%} <!--se l'oggetto' NON è None-->
+        <p><strong>Nome: </strong>{{ giornalista_anziano.nome }}</p>
+        <p><strong>Cognome: </strong>{{ giornalista_anziano.cognome }}</p>
+        <p><strong>Data di nascita: </strong>{{ giornalista_anziano.anno_di_nascita }}</p>
+    {% else %}
+        <p>Nessun giornalista presente</p>
+    {% endif %}
+
+    <hr>
+
+    <!--Query 13-->
+    <h3>Ultimi 5 articoli pubblicati</h3>
+    {% if ultimi %} <!--se la lista NON è vuota-->
+        {% for articolo in ultimi %}
+            <p><strong>Visualizzazioni: </strong>{{ articolo.visualizzazioni}}</p>
+            <p><strong>Titolo: </strong>{{ articolo.titolo }}</p>
+            <p><strong>Contenuto: </strong>{{ articolo.contenuto }}</p>
+            <p><strong>Autore: </strong>{{ articolo.giornalista}}</p>
+            <p><strong>Data: </strong>{{ articolo.data}}</p>
+            <hr>
+        {% endfor %}
+    {% else %}
+        <p>Nessun articolo presente</p>
+    {% endif %}
+
+    <hr>
+
+    <!--Query 14-->
+    <h3>Articoli con più di 100 visualizzazioni</h3>
+    {% if articoli_minime_visualizzazioni %} <!--se la lista NON è vuota-->
+        {% for articolo in articoli_minime_visualizzazioni %}
+            <p><strong>Visualizzazioni: </strong>{{ articolo.visualizzazioni}}</p>
+            <p><strong>Titolo: </strong>{{ articolo.titolo }}</p>
+            <p><strong>Contenuto: </strong>{{ articolo.contenuto }}</p>
+            <p><strong>Autore: </strong>{{ articolo.giornalista}}</p>
+            <p><strong>Data: </strong>{{ articolo.data}}</p>
+            <hr>
+        {% endfor %}
+    {% else %}
+        <p>Nessun articolo</p>
+    {% endif %}
+
+    <hr>
+
+    <!--Query 15-->
+    <h3>Articoli che contengono nel titolo la parola 'importante'</h3>
+    {% if articoli_parola %} <!--se la lista NON è vuota-->
+        {% for articolo in articoli_parola %}
+            <p><strong>Visualizzazioni: </strong>{{ articolo.visualizzazioni}}</p>
+            <p><strong>Titolo: </strong>{{ articolo.titolo }}</p>
+            <p><strong>Contenuto: </strong>{{ articolo.contenuto }}</p>
+            <p><strong>Autore: </strong>{{ articolo.giornalista}}</p>
+            <p><strong>Data: </strong>{{ articolo.data}}</p>
+            <hr>
+        {% endfor %}
+    {% else %}
+        <p>Nessun articolo</p>
+    {% endif %}
+
+    <hr>
+{%endblock content%}
+
+
+
