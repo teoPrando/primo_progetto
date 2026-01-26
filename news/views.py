@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from .models import Articolo,Giornalista
 import datetime
+from django.db.models import Q
 
 # Create your views here.
 def home(request):
@@ -94,7 +95,19 @@ def queryBase(request):
     articoli_minime_visualizzazioni = Articolo.objects.filter(visualizzazioni__gte=100) #__gte sta per greater than or equals (visualizzaizzioni >=100)
     # 15. Tutti gli articoli che contengono una certa parola nel titolo
     articoli_parola = Articolo.objects.filter(titolo__icontains='importante') #__icontains serve per verificare che nel campo titolo ci sia la parola 'importante'
-    
+    # 16. Articoli pubblicati in un certo mese di un anno specifico
+    articoli_mese_anno = Articolo.objects.filter(data__month=1, data__year=2023) #due condizioni separate dalla virgola corrispondono all' AND
+    # 17. Giornalisti con almeno un articolo con + di 100 visualizzazioni
+    giornalisti_con_articoli_popolari = Giornalista.objects.filter(articoli__visualizzazioni__gte=100).distinct() #.distinct fa in modo di non prendere due volte lo stesso giornalista
+    # 18. Articoli scritti da giornalisti nati dopo il 1/1/1990 E (AND) con almeno 50 visualizzazioni
+    articoli_con_and=articoli_con_and = Articolo.objects.filter(giornalista__anno_di_nascita__gte=datetime.date(1990,1,1), visualizzazioni__gte=50)
+    # 19. Articoli scritti da giornalisti nati dopo il 1/1/1990 O (OR) con meno di 50 visualizzazioni
+    articoli_con_or=articoli_con_and = Articolo.objects.filter(Q(giornalista__anno_di_nascita__gte=datetime.date(1990,1,1)) | Q(visualizzazioni__lte=50)) #per l' OR viene utilizzato l'operatore Q davanti alle condizioni separate da |
+    # 20. Articoli scritti da giornalisti nati dopo l'1/1/1990 
+    articoli_con_not=Articolo.objects.filter(~Q(giornalista__anno_di_nascita__lt=datetime.date(1990, 1, 1))) #nega la condizione (ovvero quelli nati prima del 1/1/1990)
+    #oppure
+    # articoli_con_not=Articolo.objects.exclude(giornalista__anno_di_nascita__lt=datetime.date(1990, 1, 1)) esclude quelli nati prima
+
     #dizionario context
     context = {
         'articoli_cognome': articoli_cognome,
@@ -111,6 +124,11 @@ def queryBase(request):
         'giornalista_anziano': giornalista_anziano,
         'ultimi': ultimi,
         'articoli_minime_visualizzazioni': articoli_minime_visualizzazioni,
-        'articoli_parola': articoli_parola
+        'articoli_parola': articoli_parola,
+        'articoli_mese_anno': articoli_mese_anno,
+        'giornalisti_con_articoli_popolari':giornalisti_con_articoli_popolari,
+        'articoli_con_and':articoli_con_and,
+        'articoli_con_or':articoli_con_or,
+        'articoli_con_not':articoli_con_not
     }
     return render(request,"query.html",context=context)
