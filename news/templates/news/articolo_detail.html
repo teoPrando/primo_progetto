@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{%block title%}
+    {{articolo.titolo}} 
+{%endblock title%}
+
+{%block content%}
+    <h1><strong>Articolo: </strong> {{articolo.titolo}}</h1> <!--articolo è l'oggetto ritornato dalla funzione articoloDetailView, quindi quello con la pk dell'url-->
+    <h3><strong>Contenuto: </strong> {{articolo.contenuto}}</h3>
+     <p><strong>Autore: </strong><a href="{% url 'news:giornalistaDetail' articolo.giornalista.id %}">{{ articolo.giornalista.nome }} {{ articolo.giornalista.cognome }}</a></p><!-- link che si collega alla pagina giornalista_detail.html e gli passa la primary key (giornalista.id)-->
+{%endblock content%}

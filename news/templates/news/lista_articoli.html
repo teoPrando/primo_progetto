@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{%block title%}
+    Lista_articoli 
+{%endblock title%}
+
+{%block content%}
+    <h3>{{intestazione}}</h3>
+    {%for articolo in articoli%} <!--Itera per tutti gli oggetti della lista -->
+        <h1><strong>Titolo: </strong><a href="{% url 'news:articoloDetail' articolo.id %}">{{ articolo.titolo }}</a></h1> <!-- link che si collega alla pagina articolo_detail.html e gli passa la primary key (articolo.id)-->
+        <p><strong>Data: </strong>{{ articolo.data}}</p>
+        <h3><strong>Contenuto: </strong> {{articolo.contenuto}}</h3>
+        <h5><strong>Autore: </strong><a href="{% url 'news:giornalistaDetail' articolo.giornalista.id %}">{{ articolo.giornalista.nome }} {{ articolo.giornalista.cognome }}</a></h5><!-- link che si collega alla pagina giornalista_detail.html e gli passa la primary key (giornalista.id)-->
+        <hr>
+    {%endfor %}
+{%endblock content%}
