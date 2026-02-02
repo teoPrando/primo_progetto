@@ -39,10 +39,19 @@ def home(request):
     print(context)
     return render(request,"news/homepage.html",context)
 
+def index(request):
+    return render(request,"news/index.html")
 def articoloDetailView(request,pk): #il paramtero pk sta per la primary key che identifica l'articolo
     articolo= get_object_or_404(Articolo,pk=pk) #ritorna l'oggetto nel database Articolo con primary key uguale a quella passata come parametro
     context={"articolo":articolo}
     return render(request,"articolo_detail.html",context)
+
+def giornalistaDetailView(request,pk): #il paramtero pk sta per la primary key che identifica il giornalista
+    giornalista= get_object_or_404(Giornalista,pk=pk) #ritorna l'oggetto nel database Articolo con primary key uguale a quella passata come parametro
+    articoli_giornalista=Articolo.objects.filter(giornalista=giornalista) #lista di articoli scritti dal giornalista
+    context={"giornalista":giornalista,
+             "articoli_giornalista":articoli_giornalista}
+    return render(request,"giornalista_detail.html",context)
 
 #ritorna articoli di un giornalista, se non specificato mostra tutti gli articoli
 def lista_articoli(request,pk=None):  #pk=None: se non viene passato pk mostra tutti gli articoli
@@ -100,9 +109,9 @@ def queryBase(request):
     # 17. Giornalisti con almeno un articolo con + di 100 visualizzazioni
     giornalisti_con_articoli_popolari = Giornalista.objects.filter(articoli__visualizzazioni__gte=100).distinct() #.distinct fa in modo di non prendere due volte lo stesso giornalista
     # 18. Articoli scritti da giornalisti nati dopo il 1/1/1990 E (AND) con almeno 50 visualizzazioni
-    articoli_con_and=articoli_con_and = Articolo.objects.filter(giornalista__anno_di_nascita__gte=datetime.date(1990,1,1), visualizzazioni__gte=50)
+    articoli_con_and= Articolo.objects.filter(giornalista__anno_di_nascita__gte=datetime.date(1990,1,1), visualizzazioni__gte=50)
     # 19. Articoli scritti da giornalisti nati dopo il 1/1/1990 O (OR) con meno di 50 visualizzazioni
-    articoli_con_or=articoli_con_and = Articolo.objects.filter(Q(giornalista__anno_di_nascita__gte=datetime.date(1990,1,1)) | Q(visualizzazioni__lte=50)) #per l' OR viene utilizzato l'operatore Q davanti alle condizioni separate da |
+    articoli_con_or = Articolo.objects.filter(Q(giornalista__anno_di_nascita__gte=datetime.date(1990,1,1)) | Q(visualizzazioni__lte=50)) #per l' OR viene utilizzato l'operatore Q davanti alle condizioni separate da |
     # 20. Articoli scritti da giornalisti nati dopo l'1/1/1990 
     articoli_con_not=Articolo.objects.filter(~Q(giornalista__anno_di_nascita__lt=datetime.date(1990, 1, 1))) #nega la condizione (ovvero quelli nati prima del 1/1/1990)
     #oppure

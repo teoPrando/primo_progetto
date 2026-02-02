@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{%block title%}
+    Index news
+{%endblock title%}
+
+{%block content%}
+    <ol>
+        <li><a href="{% url 'index_root'%}">Index root</a></li>
+        <li><a href="{% url 'news:homeview'%}">Home page news</a></li>
+        <li><a href="{% url 'news:lista_articoli'%}">Lista articoli</a></li>
+        <li><a href="{% url 'news:query_base'%}">Query base</a></li>
+    </ol>
+{%endblock content%}
