@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{%block title%}
+    Max Min voti
+{%endblock title%}
+
+{%block content%}
+<h2>Verifiche</h2>
+    <!--MAX-->
+    <h3>Voto massimo: {{max.voto}}</h3>
+    <h5>Materie in cui è stato preso il voto massimo: </h5>
+    <ul>
+        {% for materia in max.materie %}
+            <li>{{materia}}</li>
+        {% endfor %}
+    </ul>
+    <h5>Studenti che hanno preso il voto massimo: </h5>
+    <ul>
+        {% for studente in max.studenti %}
+            <li>{{studente}}</li>
+        {% endfor %}
+    </ul>
+
+    <hr>
+
+    <h3>Voto minimo: {{min.voto}}</h3>
+    <h5>Materie in cui è stato preso il voto minimo: </h5>
+    <ul>
+        {% for materia in min.materie %}
+            <li>{{materia}}</li>
+        {% endfor %}
+    </ul>
+    <h5>Studenti che hanno preso il voto minimo: </h5>
+    <ul>
+        {% for studente in min.studenti %}
+            <li>{{studente}}</li>
+        {% endfor %}
+    </ul>
+    
+{%endblock content%}

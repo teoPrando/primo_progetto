@@ -67,6 +67,19 @@
           <a class="dropdown-item" href="{% url 'news:query_base' %}">Query</a>
         </div>
       </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Voti
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{% url 'voti:index' %}">Index</a>
+          <a class="dropdown-item" href="{% url 'voti:lista_materie' %}">Lista materie</a>
+          <a class="dropdown-item" href="{% url 'voti:voti_assenze' %}">Voti e assenze</a>
+          <a class="dropdown-item" href="{% url 'voti:media_voti' %}">Media voti</a>
+          <a class="dropdown-item" href="{% url 'voti:max_min_voti' %}">Max Min voti</a>
+        </div>
+      </li>
     
   </div>
     </nav>
