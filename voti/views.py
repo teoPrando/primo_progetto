@@ -65,13 +65,15 @@ def max_min_voti(request):
         for materia,voto,assenze in voti[studente]:
             #voto MAX
             if(voto==max): # quando trovo il voto migliore
-                materie_max.append(materia) #aggiungo la materia alla lista di materie massime
+                if materia not in materie_max: #se lo studente non è ancora stato aggiunto in quelli che hanno preso il voto più alto
+                    materie_max.append(materia) #aggiungo la materia alla lista di materie massime
                 if studente not in studenti_max: #se lo studente non è ancora stato aggiunto in quelli che hanno preso il voto più alto
                     studenti_max.append(studente) #viene aggiunto
             
             #voto MIN
             if(voto==min): # quando trovo il voto peggiore
-                    materie_min.append(materia) #aggiungo la materia alla lista di materie minime
+                    if materia not in materie_min: #se lo studente non è ancora stato aggiunto in quelli che hanno preso il voto più BASSO
+                        materie_min.append(materia) #aggiungo la materia alla lista di materie minime
                     if studente not in studenti_min: #se lo studente non è ancora stato aggiunto in quelli che hanno preso il voto più basso
                         studenti_min.append(studente) #viene aggiunto
 
